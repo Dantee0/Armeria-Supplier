@@ -6,14 +6,14 @@ class TestApp(unittest.TestCase):
 
     def setUp(self):
         self.app = create_app()
-        self.app_contect = self.app.app_contect()
-        self.app_contect.psuh()
+        self.app_context = self.app.app_context()
+        self.app_context.push()
 
     def tearDown(self):
-        self.app_contect.pop()
+        self.app_context.pop()
 
     def test_app(self):
-        self.assertIsNone(current_app)
+        self.assertIsNotNone(current_app) #testea si hay conexion
 
-    if __name__ == '__main__':
-        unittest.main()
+if __name__ == '__main__':
+    unittest.main()

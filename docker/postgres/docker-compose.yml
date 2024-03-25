@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+    postgresql: #no puede ser igual 
+        container_name: postgresql-servidor # puede ir o no, no puede ser igual
+        image: postgres:15.4
+
+        networks: # nombre de la red
+            - redinterna
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_PASSWORD=${PASSWORD}
+            - POSTGRES_DB=${BASE_DE_DATOS}
+            - POSTGRES_USER=${USUARIO}
+            - PGDATA=/var/lib/postgresql/data
+        volumes: # es lo que vincula el host con el contenedor
+            - ./_data:/var/lib/postgresql
+        restart: always #es para que arranque siempre que prendamos la compu
+
+networks:
+    redinterna:

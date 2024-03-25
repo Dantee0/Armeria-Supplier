@@ -7,7 +7,7 @@ services:
         networks: # nombre de la red
             - redinterna
         ports:
-            - "5432:5432"
+            - "5000:5432"
         environment:
             - POSTGRES_PASSWORD=${PASSWORD}
             - POSTGRES_DB=${BASE_DE_DATOS}

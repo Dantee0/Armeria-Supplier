@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+    mysql_db: #no puede ser igual 
+        container_name: mysql-servidor # puede ir o no, no puede ser igual
+        image: mysql:latest
+        command: --default-authentication-plugin=mysql_native_password
+        networks: # nombre de la red
+            - redinterna
+        ports:
+            - "5001:3306"
+        environment:
+            - MYSQL_PASSWORD=${PASSWORD}
+            - MYSQL_USER=${USUARIO}
+            - MYSQL_DATABASE=${BASE_DE_DATOS}
+            - MYSQL_ROOT_PASSWORD=${PASSWORD}
+            - PGDATA=/var/lib/mysql/data
+        volumes: # es lo que vincula el host con el contenedor
+            - ./_data:/var/lib/mysql
+        restart: always #es para que arranque siempre que prendamos la compu
+
+networks:
+    redinterna:

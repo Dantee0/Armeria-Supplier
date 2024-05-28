@@ -1,9 +1,10 @@
 from flask import Flask
 from flask_cors import CORS
 from app.config.database import *
-from flask_migrate import Migrate
 from app.models import *
-from flask_marshmallow import Marshmallow
+from flask_caching import Cache
+
+cache = Cache()
 
 def create_app():
     app = Flask(__name__)

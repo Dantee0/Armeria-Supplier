@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 docker/mysql_data/
 .vscode/
+docker/
 
 # C extensions
 *.so

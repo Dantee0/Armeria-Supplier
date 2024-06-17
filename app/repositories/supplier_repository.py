@@ -1,5 +1,5 @@
 from app.models import Supplier 
-from app.config.database import db
+from app import db
 from .CRUD import Create, Read, Update, Delete
 
 
@@ -23,10 +23,10 @@ class SupplierRepository(Read, Update, Create, Delete):
     """
     Recibe el proveedor creado y lo guarda en la base de datos
     """
-    def create(self, supplier: Supplier): 
-        db.session.add(supplier)
+    def create(self, dto: Supplier): 
+        db.session.add(dto)
         db.session.commit()
-        return supplier
+        return dto
     
     """
     Hacemos una busqueda por nombre de proveedor
@@ -42,7 +42,6 @@ class SupplierRepository(Read, Update, Create, Delete):
         entity = self.find_by_id(id) 
         db.session.delete(entity)
         db.session.commit()
-        return entity
     
     """
     Hacemos una busqueda por emali de proveedor

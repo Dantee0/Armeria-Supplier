@@ -1,0 +1,32 @@
+services:
+    supplier:
+    #container_name: micro1  no tiene que estar porque no se puede escalar
+        image: armeria-supplier:v1.0.0
+        networks:
+            mired:
+                aliases: #Es para cuando quiera encontrar a un microservicio que se ejecute. Le agrego un nombre a una ip
+                    - armeria-supplier.um.localhost
+        #     #ports:
+        #     #    - ":5000"
+        environment:
+            - REDIS_HOST=${REDIS_HOST}
+            - REDIS_PORT=${REDIS_PORT}
+            - REDIS_DB=${REDIS_DB}
+            - REDIS_PASSWORD=${REDIS_PASSWORD}
+            - USER_DB=${USER_DB}
+            - PASS_DB=${PASS_DB}
+            - URL_DB=${URL_DB}
+            - PORT_DB=${PORT_DB}
+            - NAME_DB=${NAME_DB}
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.armeria-supplier.rule=Host(`armeria-supplier.um.localhost`)"
+            - "traefik.http.routers.armeria-supplier.tls=true"
+            - "traefik.http.services.armeria-supplier.loadbalancer.server.port=5000"
+            - "traefik.docker.network.mired"
+            - "traefik.http.middlewares.armeria-supplier.circuitbreaker.expression=LatencyAtQuantileMS(50.0) > 100"
+            - "traefik.http.middlewares.armeria-supplier.circuitbreaker.expression=ResponseCodeRatio(500, 600, 0, 600) > 0.25"
+            - "traefik.http.middlewares.armeria-supplier.circuitbreaker.expression=NetworkErrorRatio() > 0.5"
+networks:
+    mired:
+        external: true #Si no salta un error, tengo que crear la red -> docker network create <nombre del a red (en este caso mired)> 

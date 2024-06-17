@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
-from app.config.database import db
+from app import db
 
 
 class Create(ABC):
 
     @abstractmethod
-    def create(self, entity:db.Model):
+    def create(self, entity):
         pass
 
 
@@ -23,12 +23,12 @@ class Read(ABC):
 class Update(ABC):
 
     @abstractmethod
-    def update(self, entity:db.Model, id:int):
+    def update(self, entity, id:int):
         pass
 
 
 class Delete(ABC):
     
     @abstractmethod
-    def delete(self, entity:db.Model):
+    def delete(self, entity):
         pass

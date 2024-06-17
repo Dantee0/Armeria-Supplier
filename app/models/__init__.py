@@ -1,1 +1,1 @@
-from .supplier import *
+from .supplier import Supplier

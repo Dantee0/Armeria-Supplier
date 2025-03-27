@@ -16,7 +16,7 @@ NAME_DB = os.environ.get('NAME_DB')
 PORT_DB = os.environ.get('PORT_DB')
 
 PROD_DATABASE_URI = f'postgresql://{USER_DB}:{PASS_DB}@{URL_DB}:{PORT_DB}/{NAME_DB}'
-DEV_DATABASE_URI = f'postgresql://{USER_DB}:{PASS_DB}@{URL_DB}:{PORT_DB}/{NAME_DB}'
+DEV_DATABASE_URI = f'postgresql://{USER_DB}:{PASS_DB}@localhost:{PORT_DB}/{NAME_DB}'
 
 
 class Config(object):

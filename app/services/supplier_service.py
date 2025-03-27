@@ -13,7 +13,7 @@ class SupplierService: #van las tareas
         supplier = cache.get(str(id))
         if supplier == None:
             supplier = self.__repo.find_by_id(id)
-            cache.set(self.__repo.id, supplier, timeout=50) #si ya pasaron 50 seg lo va a buscar y lo guarda por 50 seg
+            cache.set(str(supplier.id), supplier, timeout=50) #lo guarda por 50 seg
         return supplier
     
 
@@ -45,14 +45,14 @@ class SupplierService: #van las tareas
     @retry(stop=(stop_after_delay(10) | stop_after_attempt(5)))
     def create(self, entity: Supplier) -> Supplier:
         supplier = self.__repo.create(entity)
-        cache.set(str(supplier.id, supplier, timeout=50))
+        cache.set(str(supplier.id), supplier, timeout=50)
         return supplier
     
 
     @retry(stop=(stop_after_delay(10) | stop_after_attempt(5)))
     def update(self, dto, id:int) -> Supplier:
         supplier = self.__repo.update(dto, id)
-        cache.set(str(supplier.id, supplier, timeout=50))
+        cache.set(str(supplier.id), supplier, timeout=50)
         return supplier
     
 

@@ -7,11 +7,11 @@ from dataclasses import dataclass
 @dataclass
 class Supplier(db.Model):
     __tablename__ ='supplier'
-    __id = db.Column('id' , db.Integer, primary_key=True, autoincrement=True)
-    __name = db.Column('name' , db.String(250))
-    __cuil= db.Column('cuil', db.String(250), unique=True)
-    __email= db.Column('email', db.String(250), unique=True)
-    __code= db.Column('code', db.String(250), unique=True) 
+    id = db.Column('id' , db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column('name' , db.String(250))
+    cuil= db.Column('cuil', db.String(250))
+    email= db.Column('email', db.String(250))
+    code= db.Column('code', db.String(250)) 
 
 
     """

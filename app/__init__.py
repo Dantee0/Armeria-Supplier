@@ -3,9 +3,8 @@ from flask_caching import Cache
 from flask_marshmallow import Marshmallow
 from app.config.database import *
 from flask_migrate import Migrate
-from app.config import database
-from app.controllers import supplier
 
+from app.config import database
 ma = Marshmallow()
 db = SQLAlchemy()
 migrate = Migrate()

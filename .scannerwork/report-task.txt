@@ -1,0 +1,6 @@
+projectKey=UM-2025
+serverUrl=http://localhost:9000
+serverVersion=25.3.0.104237
+dashboardUrl=http://localhost:9000/dashboard?id=UM-2025
+ceTaskId=e995f373-d5f8-44ce-a847-d6c360e5d196
+ceTaskUrl=http://localhost:9000/api/ce/task?id=e995f373-d5f8-44ce-a847-d6c360e5d196
